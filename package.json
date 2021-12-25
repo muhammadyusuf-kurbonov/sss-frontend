@@ -11,6 +11,7 @@
     "@feathersjs/authentication-client": "^4.5.11",
     "@feathersjs/feathers": "^4.5.11",
     "@feathersjs/socketio-client": "^4.5.11",
+    "@quintet/vue-quintable": "^2.0.3",
     "@vue/composition-api": "^1.4.2",
     "bootstrap": "^5.1.3",
     "bootstrap-vue": "^2.21.2",

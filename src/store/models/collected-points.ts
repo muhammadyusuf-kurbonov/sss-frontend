@@ -12,14 +12,20 @@ export class CollectedPointsModel extends BaseModel {
     options: ModelInstanceOptions | undefined
   ) {
     super(data, options);
+    this._id = data?._id;
+    this.team = data?.team;
+    this.event = data?.event;
+    this.points = data?.points;
+    this.teamId = data?.teamId;
+    this.eventId = data?.eventId;
   }
 
   static modelName = "CollectedPoints";
 
-  id = "";
-  teamId = "";
-  eventId = "";
-  points = 0;
+  _id: string;
+  teamId: string;
+  eventId: string;
+  points: number;
   team?: Team;
   event?: Event;
 }

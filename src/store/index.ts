@@ -27,7 +27,7 @@ export default new Vuex.Store({
     }),
     service({
       Model: Event,
-      service: feathersClient.service("events"),
+      service: feathersClient.service("event"),
     }),
     service({
       Model: CollectedPointsModel,

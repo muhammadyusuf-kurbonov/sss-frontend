@@ -11,12 +11,16 @@ export class Team extends BaseModel {
     options: ModelInstanceOptions | undefined
   ) {
     super(data, options);
+    this._id = data?._id;
+    this.name = data?.name;
+    this.score = data?.score;
+    this.members = data?.members;
   }
 
   static modelName = "Team";
 
-  _id = "";
-  name = "";
-  members: User[] = [];
-  score = 0;
+  _id: string;
+  name: string;
+  members: User[];
+  score: number;
 }
