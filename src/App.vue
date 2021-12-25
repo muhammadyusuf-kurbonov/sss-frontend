@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="container">
-    <b-btn @click="addNewUser">Add Team</b-btn>
-    <b-btn @click="addNewEvent">Add Event</b-btn>
+    <b-row>
+      <div class="col-2"></div>
+      <add-new-participant />
+      <add-event-modal />
+      <div class="col-2"></div>
+    </b-row>
     <vue-quintable :config="config" :rows="tableRows"></vue-quintable>
   </div>
 </template>
@@ -16,6 +20,8 @@ import EventVue from "./components/EventVue.vue";
 import { Event } from "./store/models/event";
 import { Team } from "./store/models/team";
 import TeamActions from "./components/TeamActions.vue";
+import AddNewParticipant from "./components/modals/AddParticipantModal.vue";
+import AddEventModal from "./components/modals/AddEventModal.vue";
 
 Vue.component("team-actions", TeamActions);
 
@@ -25,6 +31,8 @@ Vue.component("team-actions", TeamActions);
     TeamVue,
     EventVue,
     "team-actions": TeamActions,
+    AddNewParticipant,
+    AddEventModal,
   },
   methods: {
     ...mapActions("users", { fetchUsers: "find", addUser: "create" }),
@@ -61,6 +69,22 @@ export default class App extends Vue {
   private addCollectedPoint!: any;
 
   mounted(): void {
+    this.$root.$on("on.reload.request", () => {
+      this.fetchCollectedPoints({
+        paginate: false,
+      });
+      this.fetchUsers({
+        paginate: false,
+      });
+      this.fetchTeams({
+        paginate: false,
+      });
+
+      this.fetchEvents({
+        paginate: false,
+      });
+    });
+
     this.fetchUsers({
       paginate: false,
     });
@@ -71,17 +95,6 @@ export default class App extends Vue {
       paginate: false,
     });
     this.fetchCollectedPoints({
-      paginate: false,
-    });
-  }
-
-  async addNewUser(): Promise<void> {
-    await this.addUser({
-      fullName: "test",
-      email: "test@domain.com",
-      teamId: "test-team",
-    });
-    await this.fetchTeams({
       paginate: false,
     });
   }
