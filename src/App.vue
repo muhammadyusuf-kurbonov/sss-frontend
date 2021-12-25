@@ -1,20 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <b-btn @click="addNewUser"></b-btn>
+    <div>{{ users }}</div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+import { mapActions, mapGetters } from "vuex";
+import { User } from "./store/models/user";
 
 @Component({
   components: {
-    HelloWorld,
+  },
+  methods: {
+    ...mapActions("users", { getUsers: "find", addUser: "create" }),
+  },
+  computed: {
+    ...mapGetters("users", ["find"]),
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private find!: any;
+  private getUsers!: any;
+  private addUser!: any;
+
+  get users(): User[] {
+    return this.find({
+      paginate: false,
+    });
+  }
+  mounted(): void {
+    this.getUsers();
+  }
+  async addNewUser(): Promise<void> {
+    await this.addUser({
+      fullName: "test",
+      email: "test@domain.com",
+      teamId: "test-team",
+    });
+  }
+}
 </script>
 
 <style>
