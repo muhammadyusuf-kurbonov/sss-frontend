@@ -1,5 +1,9 @@
 <template>
   <div id="app" class="container">
+    <span class="row m-5 no-gutter">
+      <h3>Score system</h3>
+      <i>by Shakhzod</i>
+    </span>
     <b-row>
       <div class="col-2"></div>
       <add-new-participant />
@@ -15,21 +19,19 @@ import { Component, Vue } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
 import { User } from "./store/models/user";
 import VueQuintable from "./components/QuinTable.vue";
-import TeamVue from "./components/TeamVue.vue";
-import EventVue from "./components/EventVue.vue";
 import { Event } from "./store/models/event";
 import { Team } from "./store/models/team";
 import TeamActions from "./components/TeamActions.vue";
 import AddNewParticipant from "./components/modals/AddParticipantModal.vue";
 import AddEventModal from "./components/modals/AddEventModal.vue";
+import PointVue from "./components/Points.vue";
 
 Vue.component("team-actions", TeamActions);
+Vue.component("point-vue", PointVue);
 
 @Component({
   components: {
     VueQuintable,
-    TeamVue,
-    EventVue,
     "team-actions": TeamActions,
     AddNewParticipant,
     AddEventModal,
@@ -160,7 +162,13 @@ export default class App extends Vue {
         },
       }).data[0];
       row.push({
-        text: pointData ? pointData.points : "0",
+        component: {
+          name: "point-vue",
+          props: {
+            teamId: team._id,
+            event: event,
+          }
+        },
       });
     });
 
