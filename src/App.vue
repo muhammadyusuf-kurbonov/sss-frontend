@@ -2,7 +2,7 @@
   <div id="app" class="container">
     <span class="row m-5 no-gutter">
       <h3>Score system</h3>
-      <i>by Shakhzod</i>
+      <i>by Shakhzod Khusanov</i>
     </span>
     <b-row>
       <div class="col-2"></div>
