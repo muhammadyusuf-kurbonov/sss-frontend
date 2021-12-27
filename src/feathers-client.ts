@@ -6,8 +6,8 @@ import { iff, discard } from "feathers-hooks-common";
 import feathersVuex from "feathers-vuex";
 
 const socket = io(
-  process.env.QOVERY_APPLICATION_Z30302B0F_HOST_INTERNAL
-    ? process.env.QOVERY_APPLICATION_Z30302B0F_HOST_INTERNAL
+  process.env.QOVERY_APPLICATION_Z30302B0F_HOST_EXTERNAL
+    ? process.env.QOVERY_APPLICATION_Z30302B0F_HOST_EXTERNAL
     : "http://localhost:3030",
   { transports: ["websocket"] }
 );
