@@ -14,6 +14,11 @@ const socket = io(
   { transports: ["websocket"] }
 );
 
+console.log(
+  "connection to server",
+  process.env.QOVERY_APPLICATION_Z30302B0F_HOST_EXTERNAL
+);
+
 const feathersClient = feathers()
   .configure(socketio(socket))
   .configure(auth({ storage: window.localStorage }))
