@@ -6,7 +6,7 @@ RUN yarn install --pure-lockfile --non-interactive && yarn global add @vue/cli
 ARG VUE_APP_BASE_URL
 COPY . .
 
-RUN NODE_OPTIONS=--max_old_space_size=4096 yarn build --mode staging
+RUN NODE_OPTIONS=--max_old_space_size=4096 yarn build
 
 FROM nginx:1.19.0-alpine as production-stage
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
