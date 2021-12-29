@@ -5,16 +5,9 @@ import io from "socket.io-client";
 import { iff, discard } from "feathers-hooks-common";
 import feathersVuex from "feathers-vuex";
 
-const host = "https://zdf031f97-zccea369a-gtw.qovery.io/";
-// const host = "https://" + process.env.QOVERY_APPLICATION_Z30302B0F_HOST_EXTERNAL
-// const host = "http://localhost"
+const socket = io(process.env.BACKEND_HOST + ":3030", { transports: ["websocket"] });
 
-const socket = io(host + ":3030", { transports: ["websocket"] });
-
-console.log(
-  "connection to server",
-  process.env.QOVERY_APPLICATION_Z30302B0F_HOST_EXTERNAL
-);
+console.log("connection to server", process.env.BACKEND_HOST);
 
 const feathersClient = feathers()
   .configure(socketio(socket))
