@@ -4,7 +4,6 @@ COPY package.json yarn.lock ./
 
 RUN yarn install --pure-lockfile --non-interactive && yarn global add @vue/cli
 ARG VUE_APP_BASE_URL
-ENV VUE_APP_BACKEND_HOST = $QOVERY_APPLICATION_Z30302B0F_HOST_EXTERNAL
 COPY . .
 
 RUN NODE_OPTIONS=--max_old_space_size=4096 yarn build

@@ -5,7 +5,9 @@ import io from "socket.io-client";
 import { iff, discard } from "feathers-hooks-common";
 import feathersVuex from "feathers-vuex";
 
-const socket = io(process.env.VUE_APP_BACKEND_HOST + ":3030", { transports: ["websocket"] });
+const socket = io(process.env.VUE_APP_BACKEND_HOST + ":3030", {
+  transports: ["websocket"],
+});
 
 console.log("connection to server", process.env.VUE_APP_BACKEND_HOST);
 
